@@ -143,13 +143,13 @@ bool isSubtree(Node* root, Node* subroot){ //doubt or incorrect
     if(root->data==subroot->data){
         if(isIdentical(root, subroot)) return true;
     }
-    int isLeft=isSubtree(root->left, subroot);
-    if(!isLeft){
-        isSubtree(root->right, subroot);
-    }
-    return true;
+    // int isLeft=isSubtree(root->left, subroot);
+    // if(!isLeft){
+        return isSubtree(root->right, subroot) || isSubtree(root->left, subroot);
+    // }
+    // return true;
 }
-int topView(Node* root){
+void topView(Node* root){
     queue<pair<Node*, int>> q;
     map<int, int> m;
     q.push(make_pair(root, 0));
@@ -310,39 +310,39 @@ int main(){
     vector<int> nodes={1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
     // vector<int> nodes={1,2,4,-1,-1,5,-1,6,-1,7,-1,-1,3,-1,-1};
     Node* root=buildTree(nodes);
-    // cout<<"First Node value: "<<root->data<<endl<<"Pre order travarsal: ";
-    // preorder(root);
-    // cout<<endl<<"In(Middle) order travarsal: ";
-    // inorder(root);
-    // cout<<endl<<"Post order travarsal: ";
-    // postorder(root);
-    // cout<<endl<<"Level order travarsal: ";
-    // levelOrder(root);
-    // cout<<endl<<"Level wise traversal:"<<endl;
-    // levelOrderVariation(root);
-    // cout<<"Height: "<<height(root)<<endl;
-    // cout<<"No. of Nodes: "<<countNodes(root)<<endl;
+    cout<<"First Node value: "<<root->data<<endl<<"Pre order travarsal: ";
+    preorder(root);
+    cout<<endl<<"In(Middle) order travarsal: ";
+    inorder(root);
+    cout<<endl<<"Post order travarsal: ";
+    postorder(root);
+    cout<<endl<<"Level order travarsal: ";
+    levelOrder(root);
+    cout<<endl<<"Level wise traversal:"<<endl;
+    levelOrderVariation(root);
+    cout<<"Height: "<<height(root)<<endl;
+    cout<<"No. of Nodes: "<<countNodes(root)<<endl;
 
     Node* root2=new Node(2);
     root2->left=new Node(4);
     root2->right=new Node(5);
-    // root2->left->right=new Node(6);
+    root2->left->right=new Node(6);
     cout<<"No. of Nodes of root 2: "<<countNodes(root2)<<endl;
-   // preorder(root2);
-    //levelOrder(root2);
-    // cout<<endl<<"Sum of nodes: "<<nodesSum(root)<<endl;
-    // cout<<"Max Diameter: "<<diameter(root)<<endl;
-    // cout<<"Optimised code for max diameter: "<<optimiseDia(root).first<<", "<<optimiseDia(root).second<<endl;
-    // cout<<"Is Subtree?: "<<isSubtree(root, root2)<<endl;
-    // topView(root);
-    // kthLevel(root, 3);
-    // kthRec(root, 3, 1);
-    // cout<<endl<<"Lowest common anccesstor: "<<LCA(root, 4, 5)<<endl;
-    // cout<<"Lowest common anccesstor app 2: "<<lcaApr2(root, 4, 6)->data<<endl;
-    // cout<<"Min distance: "<<minDis(root, 4, 5)<<endl;
-    // kthAnccesstor(root, 6, 1);
+   preorder(root2);
+    levelOrder(root2);
+    cout<<endl<<"Sum of nodes: "<<nodesSum(root)<<endl;
+    cout<<"Max Diameter: "<<diameter(root)<<endl;
+    cout<<"Optimised code for max diameter: "<<optimiseDia(root).first<<", "<<optimiseDia(root).second<<endl;
+    cout<<"Is Subtree?: "<<isSubtree(root, root2)<<endl;
+    topView(root);
+    kthLevel(root, 3);
+    kthRec(root, 3, 1);
+    cout<<endl<<"Lowest common anccesstor: "<<LCA(root, 4, 5)<<endl;
+    cout<<"Lowest common anccesstor app 2: "<<lcaApr2(root, 4, 6)->data<<endl;
+    cout<<"Min distance: "<<minDis(root, 4, 5)<<endl;
+    kthAnccesstor(root, 6, 1);
     cout<<"Transform: "<<sumTree(root)<<endl;
     preorder(root);
-    // levelOrderVariation(root);
+    levelOrderVariation(root);
     return 0;
 }
